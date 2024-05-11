@@ -28,6 +28,20 @@ internal class Program
 
         #endregion
 
+        #region Exercício 03
+
+        Console.WriteLine("\nExercício 03 - Obtendo idade de pessoa mais velha.");
+
+        Func<Pessoa, int> obterIdade = p => p.Idade;
+
+        var idadeMaxima = listaDePessoas.Max(obterIdade);
+
+        var pessoaMaisVelha = listaDePessoas.Find(p => p.Idade == idadeMaxima);
+
+        Console.WriteLine($"A pessoa mais velha é: {pessoaMaisVelha.Nome} a sua idade é {pessoaMaisVelha.Idade} anos.");
+
+        #endregion
+
         Console.ReadKey();
     }
 }
