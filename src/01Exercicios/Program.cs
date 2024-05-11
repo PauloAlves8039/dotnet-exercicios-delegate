@@ -17,6 +17,17 @@ internal class Program
 
         #endregion
 
+        #region Exercício 02
+
+        Console.WriteLine("\nExercício 02 - Filtrar pessoas maiores de 18 anos.");
+
+        Predicate<Pessoa> filtrarIdadeMaiorQueDezoito = p => p.Idade > 18;
+        var pessoasMaioresDeDozeoitoAnos = listaDePessoas.FindAll(filtrarIdadeMaiorQueDezoito);
+
+        pessoasMaioresDeDozeoitoAnos.ForEach(imprimirListaDePessoas);
+
+        #endregion
+
         Console.ReadKey();
     }
 }
