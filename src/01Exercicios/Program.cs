@@ -6,30 +6,34 @@ internal class Program
     {
         Console.WriteLine("********** Exercícios Delegate **********");
 
-        #region Exercício 01
-
         var listaDePessoas = Pessoa.ObterListaDePessoas();
 
+        ExibindoListaDePessoas(listaDePessoas);
+        PesquisarPessoaMaiorDeDezoitoAnos(listaDePessoas);
+        PesquisarPessoaMaisVelha(listaDePessoas);
+
+        Console.ReadKey();
+    }
+
+    private static void ExibindoListaDePessoas(List<Pessoa> listaDePessoas) 
+    {
         Console.WriteLine("\nExercício 01 - Imprimindo o Nome e Idade de cada pessoa.");
 
-        Action<Pessoa> imprimirListaDePessoas = p => Console.WriteLine($"{p.Nome} - {p.Idade}");
-        listaDePessoas.ForEach(imprimirListaDePessoas);
+        ImprimirListaDePessoas(listaDePessoas);
+    }
 
-        #endregion
-
-        #region Exercício 02
-
+    private static void PesquisarPessoaMaiorDeDezoitoAnos(List<Pessoa> listaDePessoas) 
+    {
         Console.WriteLine("\nExercício 02 - Filtrar pessoas maiores de 18 anos.");
 
         Predicate<Pessoa> filtrarIdadeMaiorQueDezoito = p => p.Idade > 18;
         var pessoasMaioresDeDozeoitoAnos = listaDePessoas.FindAll(filtrarIdadeMaiorQueDezoito);
 
-        pessoasMaioresDeDozeoitoAnos.ForEach(imprimirListaDePessoas);
+        ImprimirListaDePessoas(pessoasMaioresDeDozeoitoAnos);
+    }
 
-        #endregion
-
-        #region Exercício 03
-
+    private static void PesquisarPessoaMaisVelha(List<Pessoa> listaDePessoas) 
+    {
         Console.WriteLine("\nExercício 03 - Obtendo idade de pessoa mais velha.");
 
         Func<Pessoa, int> obterIdade = p => p.Idade;
@@ -39,9 +43,11 @@ internal class Program
         var pessoaMaisVelha = listaDePessoas.Find(p => p.Idade == idadeMaxima);
 
         Console.WriteLine($"A pessoa mais velha é: {pessoaMaisVelha.Nome} a sua idade é {pessoaMaisVelha.Idade} anos.");
+    }
 
-        #endregion
-
-        Console.ReadKey();
+    private static void ImprimirListaDePessoas(List<Pessoa> listaDePessoas) 
+    {
+        Action<Pessoa> imprimirListaDePessoas = p => Console.WriteLine($"{p.Nome} - {p.Idade}");
+        listaDePessoas.ForEach(imprimirListaDePessoas);
     }
 }
